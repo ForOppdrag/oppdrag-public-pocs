@@ -21,7 +21,7 @@ def main() -> None:
     aggregates = defaultdict(lambda: {"progress": 0, "deliveries": 0, "alerts": 0, "events": 0})
     latencies: list[int] = []
 
-    for line in EVENTS.read_text(encoding="utf-8").splitlines():
+    for line in EVENTS.read_text(encoding="utf-8-sig").splitlines():
         event = json.loads(line)
         mission = aggregates[event["mission_id"]]
         mission["events"] += 1
@@ -40,9 +40,10 @@ def main() -> None:
     for mission_id, agg in sorted(aggregates.items()):
         lines.append(f"| {mission_id} | {agg['progress']}% | {agg['deliveries']} | {agg['alerts']} | {agg['events']} |")
     lines.extend(["", "## Takeaways", "", "- Le schema d'evenement doit etre stable avant de brancher le dashboard.", "- La latence P99 est plus utile que la moyenne pour piloter les alertes.", "- Une base analytique type ClickHouse convient mieux aux agregats rapides qu'une base transactionnelle seule."])
-    REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8-sig")
     print(f"POC-003 OK - p99={p99}ms - report={REPORT}")
 
 
 if __name__ == "__main__":
     main()
+

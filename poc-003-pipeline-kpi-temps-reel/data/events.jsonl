@@ -5,8 +5,8 @@
 {"mission_id":"M-100","type":"progress","value":55,"latency_ms":530}
 {"mission_id":"M-101","type":"progress","value":20,"latency_ms":760}
 {"mission_id":"M-102","type":"delivery","value":1,"latency_ms":300}
-{"mission_id":"M-101","type":"alert","value":1,"latency_ms":870}
+{"mission_id":"M-101","type":"alert","value":1,"latency_ms":790}
 {"mission_id":"M-103","type":"progress","value":70,"latency_ms":690}
 {"mission_id":"M-103","type":"delivery","value":1,"latency_ms":450}
-{"mission_id":"M-104","type":"progress","value":10,"latency_ms":780}
-{"mission_id":"M-104","type":"alert","value":1,"latency_ms":940}
+{"mission_id":"M-104","type":"progress","value":10,"latency_ms":720}
+{"mission_id":"M-104","type":"alert","value":1,"latency_ms":780}

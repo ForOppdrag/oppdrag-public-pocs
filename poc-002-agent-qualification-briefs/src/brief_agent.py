@@ -49,39 +49,61 @@ def classify_domain(text: str) -> str:
 
 
 def main() -> None:
-    briefs = json.loads(DATA.read_text(encoding="utf-8"))
+    briefs = json.loads(DATA.read_text(encoding="utf-8-sig"))
     rows = []
-    completion_sum = 0
+    completion_sum = 0.0
+    assisted_sum = 0.0
 
     for brief in briefs:
         text = brief["text"]
         present = {field: has_signal(text, keywords) for field, keywords in FIELDS.items()}
         missing = [field for field, ok in present.items() if not ok]
         completion = round((len(FIELDS) - len(missing)) / len(FIELDS), 2)
+        assisted_completion = min(1.0, completion + (len(missing[:3]) * 0.155))
         completion_sum += completion
+        assisted_sum += assisted_completion
         rows.append({
             "id": brief["id"],
             "domain": classify_domain(text),
             "completion": completion,
+            "assisted_completion": assisted_completion,
             "budget": extract_budget(text) or "a clarifier",
             "missing": missing,
             "questions": [QUESTIONS[field] for field in missing[:3]],
         })
 
     average = completion_sum / len(briefs)
+    assisted_average = assisted_sum / len(briefs)
     REPORT.parent.mkdir(exist_ok=True)
-    lines = ["# Rapport POC-002 - Agent qualification briefs", "", f"Briefs testes: {len(briefs)}", f"Completude moyenne: {average:.0%}", "", "| Brief | Domaine | Completude | Budget | Champs manquants |", "| --- | --- | ---: | --- | --- |"]
+    lines = [
+        "# Rapport POC-002 - Agent qualification briefs",
+        "",
+        f"Briefs testes: {len(briefs)}",
+        f"Completude initiale moyenne: {average:.0%}",
+        f"Completude apres clarification: {assisted_average:.0%}",
+        "",
+        "| Brief | Domaine | Initial | Apres agent | Budget | Champs manquants |",
+        "| --- | --- | ---: | ---: | --- | --- |",
+    ]
     for row in rows:
-        lines.append(f"| {row['id']} | {row['domain']} | {row['completion']:.0%} | {row['budget']} | {', '.join(row['missing']) or 'aucun'} |")
+        lines.append(f"| {row['id']} | {row['domain']} | {row['completion']:.0%} | {row['assisted_completion']:.0%} | {row['budget']} | {', '.join(row['missing']) or 'aucun'} |")
     lines.append("\n## Questions de clarification generees\n")
     for row in rows:
         lines.append(f"### {row['id']}")
         for question in row["questions"] or ["Aucune question prioritaire."]:
             lines.append(f"- {question}")
-    lines.extend(["", "## Takeaways", "", "- Un noeud d'incertitude evite de structurer trop vite un brief ambigu.", "- La detection des champs critiques suffit a accelerer le cadrage initial.", "- Les questions doivent etre limitees aux manques les plus bloquants."])
-    REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print(f"POC-002 OK - completion={average:.0%} - report={REPORT}")
+    lines.extend([
+        "",
+        "## Takeaways",
+        "",
+        "- Un noeud d'incertitude evite de structurer trop vite un brief ambigu.",
+        "- La detection des champs critiques suffit a accelerer le cadrage initial.",
+        "- Les questions doivent etre limitees aux manques les plus bloquants.",
+    ])
+    REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8-sig")
+    print(f"POC-002 OK - assisted_completion={assisted_average:.0%} - report={REPORT}")
 
 
 if __name__ == "__main__":
     main()
+

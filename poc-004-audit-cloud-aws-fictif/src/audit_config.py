@@ -13,7 +13,7 @@ def finding(fid: str, severity: str, asset: str, issue: str, remediation: str) -
 
 
 def main() -> None:
-    cfg = json.loads(CONFIG.read_text(encoding="utf-8"))
+    cfg = json.loads(CONFIG.read_text(encoding="utf-8-sig"))
     findings: list[dict[str, str]] = []
 
     for user in cfg["iam_users"]:
@@ -41,13 +41,32 @@ def main() -> None:
     counts = {sev: sum(1 for f in findings if f["severity"] == sev) for sev in severity_order}
 
     REPORT.parent.mkdir(exist_ok=True)
-    lines = ["# Rapport POC-004 - Audit cloud AWS fictif", "", f"Findings: {len(findings)}", f"Critiques: {counts['CRITICAL']}", f"High: {counts['HIGH']}", f"Medium: {counts['MEDIUM']}", f"Low: {counts['LOW']}", "", "| ID | Severite | Actif | Probleme | Remediation |", "| --- | --- | --- | --- | --- |"]
+    lines = [
+        "# Rapport POC-004 - Audit cloud AWS fictif",
+        "",
+        f"Findings: {len(findings)}",
+        f"Critiques: {counts['CRITICAL']}",
+        f"High: {counts['HIGH']}",
+        f"Medium: {counts['MEDIUM']}",
+        f"Low: {counts['LOW']}",
+        "",
+        "| ID | Severite | Actif | Probleme | Remediation |",
+        "| --- | --- | --- | --- | --- |",
+    ]
     for f in findings:
         lines.append(f"| {f['id']} | {f['severity']} | {f['asset']} | {f['issue']} | {f['remediation']} |")
-    lines.extend(["", "## Takeaways", "", "- Les risques IAM et exposition reseau dominent les findings critiques.", "- Un scoring contextualise rend la priorisation plus actionnable.", "- Le rapport doit inclure la validation des corrections, pas seulement la detection."])
-    REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    lines.extend([
+        "",
+        "## Takeaways",
+        "",
+        "- Les risques IAM et exposition reseau dominent les findings critiques.",
+        "- Un scoring contextualise rend la priorisation plus actionnable.",
+        "- Le rapport doit inclure la validation des corrections, pas seulement la detection.",
+    ])
+    REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8-sig")
     print(f"POC-004 OK - findings={len(findings)} critical={counts['CRITICAL']} - report={REPORT}")
 
 
 if __name__ == "__main__":
     main()
+
