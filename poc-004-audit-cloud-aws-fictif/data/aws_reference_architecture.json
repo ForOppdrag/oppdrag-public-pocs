@@ -1,0 +1,17 @@
+﻿{
+  "iam_users": [
+    {"name":"admin-shared","mfa":false,"policy":"AdministratorAccess","last_rotated_days":240},
+    {"name":"ci-deploy","mfa":true,"policy":"PowerUserAccess","last_rotated_days":45},
+    {"name":"readonly-audit","mfa":true,"policy":"ReadOnlyAccess","last_rotated_days":120}
+  ],
+  "s3_buckets": [
+    {"name":"oppdrag-public-demo-assets","public":true,"encryption":true,"versioning":false},
+    {"name":"oppdrag-client-exports","public":false,"encryption":false,"versioning":false},
+    {"name":"oppdrag-logs","public":false,"encryption":true,"versioning":true}
+  ],
+  "security_groups": [
+    {"name":"web","port":443,"cidr":"0.0.0.0/0"},
+    {"name":"ssh-admin","port":22,"cidr":"0.0.0.0/0"},
+    {"name":"postgres","port":5432,"cidr":"10.0.0.0/16"}
+  ]
+}

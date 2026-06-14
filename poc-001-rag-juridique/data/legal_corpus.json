@@ -1,0 +1,12 @@
+﻿[
+  {"id":"doc-001","title":"Clause de confidentialite","text":"Le prestataire s'engage a maintenir confidentielles les informations techniques, commerciales et financieres recues pendant la mission. Cette obligation survit cinq ans apres la fin du contrat."},
+  {"id":"doc-002","title":"Protection des donnees","text":"Tout traitement de donnees personnelles doit respecter le RGPD. Le responsable de traitement documente la finalite, la base legale, la duree de conservation et les mesures de securite."},
+  {"id":"doc-003","title":"Sous-traitance","text":"Le recours a un sous-traitant necessite une autorisation ecrite prealable. Le sous-traitant doit appliquer des garanties equivalentes a celles du contrat principal."},
+  {"id":"doc-004","title":"Reversibilite","text":"A la fin de la prestation, le prestataire remet les livrables, les scripts, la documentation et les donnees exportables dans un format ouvert sous trente jours."},
+  {"id":"doc-005","title":"Propriete intellectuelle","text":"Les livrables specifiques finances par le client sont cedes au client apres paiement integral, hors briques preexistantes et composants open source."},
+  {"id":"doc-006","title":"Securite","text":"Les acces administrateurs doivent etre nominatifs, traces et limites au besoin d'en connaitre. L'authentification multifacteur est obligatoire pour les environnements sensibles."},
+  {"id":"doc-007","title":"Service level agreement","text":"Les incidents critiques sont pris en charge sous quatre heures ouvrables. Un rapport de cause racine est transmis sous cinq jours ouvrables apres resolution."},
+  {"id":"doc-008","title":"Audit","text":"Le client peut diligenter un audit de conformite avec un preavis de quinze jours. L'audit ne doit pas perturber l'exploitation normale du service."},
+  {"id":"doc-009","title":"Responsabilite","text":"La responsabilite totale du prestataire est limitee au montant paye sur les douze derniers mois, sauf faute lourde, dol ou violation de confidentialite."},
+  {"id":"doc-010","title":"Resiliation","text":"Chaque partie peut resilier le contrat en cas de manquement non corrige trente jours apres notification ecrite."}
+]

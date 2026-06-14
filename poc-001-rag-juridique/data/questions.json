@@ -1,0 +1,17 @@
+﻿[
+  {"question":"Combien de temps dure l'obligation de confidentialite ?","expected_doc":"doc-001","answer_contains":["cinq ans"]},
+  {"question":"Quelles informations RGPD doivent etre documentees ?","expected_doc":"doc-002","answer_contains":["finalite","base legale","duree de conservation","securite"]},
+  {"question":"Un sous-traitant peut-il etre utilise librement ?","expected_doc":"doc-003","answer_contains":["autorisation ecrite prealable"]},
+  {"question":"Quel delai pour remettre les elements de reversibilite ?","expected_doc":"doc-004","answer_contains":["trente jours"]},
+  {"question":"Quand les livrables sont-ils cedes au client ?","expected_doc":"doc-005","answer_contains":["paiement integral"]},
+  {"question":"Quelles regles pour les acces administrateurs ?","expected_doc":"doc-006","answer_contains":["nominatifs","traces","multifacteur"]},
+  {"question":"Quel est le delai de prise en charge d'un incident critique ?","expected_doc":"doc-007","answer_contains":["quatre heures ouvrables"]},
+  {"question":"Quel preavis avant un audit de conformite ?","expected_doc":"doc-008","answer_contains":["quinze jours"]},
+  {"question":"Comment est limitee la responsabilite du prestataire ?","expected_doc":"doc-009","answer_contains":["douze derniers mois"]},
+  {"question":"Quand une partie peut-elle resilier ?","expected_doc":"doc-010","answer_contains":["trente jours"]},
+  {"question":"La MFA est-elle obligatoire ?","expected_doc":"doc-006","answer_contains":["obligatoire"]},
+  {"question":"Les composants open source sont-ils cedes ?","expected_doc":"doc-005","answer_contains":["hors","open source"]},
+  {"question":"Que contient un rapport apres incident ?","expected_doc":"doc-007","answer_contains":["cause racine"]},
+  {"question":"L'audit peut-il perturber l'exploitation ?","expected_doc":"doc-008","answer_contains":["ne doit pas perturber"]},
+  {"question":"Quel document parle de format ouvert ?","expected_doc":"doc-004","answer_contains":["format ouvert"]}
+]

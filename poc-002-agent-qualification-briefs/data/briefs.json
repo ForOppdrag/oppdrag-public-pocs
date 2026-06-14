@@ -1,0 +1,7 @@
+﻿[
+  {"id":"brief-001","text":"Nous cherchons un data engineer senior pour industrialiser un pipeline dbt/Snowflake. Demarrage en septembre, 3 jours sur site a Paris, mission 6 mois, budget 850 EUR jour."},
+  {"id":"brief-002","text":"Besoin d'un expert IA pour mettre en place un RAG documentaire en francais. Corpus juridique, contraintes RGPD fortes, disponibilite rapide."},
+  {"id":"brief-003","text":"Audit securite AWS urgent avant mise en production. IAM, S3 et reseau. Equipe interne disponible, rapport attendu sous deux semaines."},
+  {"id":"brief-004","text":"On veut automatiser la qualification des demandes clients avec un agent. Stack ouverte, integration CRM a prevoir, pas encore de budget valide."},
+  {"id":"brief-005","text":"Developpeur full stack pour refonte dashboard KPI. Next.js, Postgres, UX propre. Remote possible, duree a definir."}
+]
