@@ -1,8 +1,8 @@
 ﻿# Rapport POC-003 - Pipeline KPI temps reel
 
 Evenements traites: 12
-Latence P95: 780 ms
-Latence P99: 790 ms
+Latence P95 (valeurs du fichier de donnees, non mesurees): 780 ms
+Latence P99 (valeurs du fichier de donnees, non mesurees): 790 ms
 
 | Mission | Progression | Livraisons | Alertes | Evenements |
 | --- | ---: | ---: | ---: | ---: |
@@ -14,6 +14,5 @@ Latence P99: 790 ms
 
 ## Takeaways
 
-- Le schema d'evenement doit etre stable avant de brancher le dashboard.
-- La latence P99 est plus utile que la moyenne pour piloter les alertes.
-- Une base analytique type ClickHouse convient mieux aux agregats rapides qu'une base transactionnelle seule.
+- Agregation en memoire d'un fichier de 12 evenements, en Python standard : ni flux, ni fenetrage, ni Kafka, Flink ou ClickHouse.
+- Les latences sont des valeurs du fichier de donnees : les centiles decrivent l'entree, pas un traitement.

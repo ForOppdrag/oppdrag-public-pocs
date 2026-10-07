@@ -25,6 +25,7 @@ Score RAGAS-like: 0.867
 
 ## Takeaways
 
-- Le chunking court et recouvrant limite les pertes de contexte sur des clauses compactes.
-- Les questions hors corpus doivent etre detectees avant generation.
-- L'evaluation doit regarder le document retrouve et le caractere fonde de la reponse.
+- Recherche par frequence des termes sur la clause entiere : ni decoupage, ni modele vectoriel, ni generation de reponse.
+- Les deux echecs portent sur des questions dont la reponse figure dans le corpus.
+- Le jeu ne comporte aucune question hors corpus : la capacite a refuser n'est pas mesuree.
+- Score composite maison (0,6 x recherche + 0,4 x presence des termes attendus), qui n'est pas une evaluation RAGAS.

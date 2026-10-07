@@ -54,7 +54,7 @@ def main() -> None:
     lines = ["# Rapport POC-001 - RAG juridique", "", f"Questions: {len(questions)}", f"Retrieval accuracy: {retrieval:.2%}", f"Grounded answers: {faithfulness:.2%}", f"Score RAGAS-like: {ragas_like}", "", "| Question | Top doc | Score | Hit | Grounded |", "| --- | --- | ---: | --- | --- |"]
     for question, top_id, score, hit, grounded_ok in rows:
         lines.append(f"| {question} | {top_id} | {score:.3f} | {hit} | {grounded_ok} |")
-    lines.extend(["", "## Takeaways", "", "- Le chunking court et recouvrant limite les pertes de contexte sur des clauses compactes.", "- Les questions hors corpus doivent etre detectees avant generation.", "- L'evaluation doit regarder le document retrouve et le caractere fonde de la reponse."])
+    lines.extend(["", "## Takeaways", "", "- Recherche par frequence des termes sur la clause entiere : ni decoupage, ni modele vectoriel, ni generation de reponse.", "- Les deux echecs portent sur des questions dont la reponse figure dans le corpus.", "- Le jeu ne comporte aucune question hors corpus : la capacite a refuser n'est pas mesuree.", "- Score composite maison (0,6 x recherche + 0,4 x presence des termes attendus), qui n'est pas une evaluation RAGAS."])
     REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8-sig")
 
     print(f"POC-001 OK - score={ragas_like} - report={REPORT}")
