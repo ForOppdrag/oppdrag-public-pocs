@@ -36,10 +36,10 @@ def main() -> None:
     p99 = percentile(latencies, 0.99)
     p95 = percentile(latencies, 0.95)
     REPORT.parent.mkdir(exist_ok=True)
-    lines = ["# Rapport POC-003 - Pipeline KPI temps reel", "", f"Evenements traites: {len(latencies)}", f"Latence P95: {p95} ms", f"Latence P99: {p99} ms", "", "| Mission | Progression | Livraisons | Alertes | Evenements |", "| --- | ---: | ---: | ---: | ---: |"]
+    lines = ["# Rapport POC-003 - Pipeline KPI temps reel", "", f"Evenements traites: {len(latencies)}", f"Latence P95 (valeurs du fichier de donnees, non mesurees): {p95} ms", f"Latence P99 (valeurs du fichier de donnees, non mesurees): {p99} ms", "", "| Mission | Progression | Livraisons | Alertes | Evenements |", "| --- | ---: | ---: | ---: | ---: |"]
     for mission_id, agg in sorted(aggregates.items()):
         lines.append(f"| {mission_id} | {agg['progress']}% | {agg['deliveries']} | {agg['alerts']} | {agg['events']} |")
-    lines.extend(["", "## Takeaways", "", "- Le schema d'evenement doit etre stable avant de brancher le dashboard.", "- La latence P99 est plus utile que la moyenne pour piloter les alertes.", "- Une base analytique type ClickHouse convient mieux aux agregats rapides qu'une base transactionnelle seule."])
+    lines.extend(["", "## Takeaways", "", "- Agregation en memoire d'un fichier de 12 evenements, en Python standard : ni flux, ni fenetrage, ni Kafka, Flink ou ClickHouse.", "- Les latences sont des valeurs du fichier de donnees : les centiles decrivent l'entree, pas un traitement."])
     REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8-sig")
     print(f"POC-003 OK - p99={p99}ms - report={REPORT}")
 

@@ -60,7 +60,7 @@ def main() -> None:
         "## Takeaways",
         "",
         "- Les risques IAM et exposition reseau dominent les findings critiques.",
-        "- Un scoring contextualise rend la priorisation plus actionnable.",
+        "- Les severites sont fixes par regle : aucune cotation contextualisee.",
         "- Le rapport doit inclure la validation des corrections, pas seulement la detection.",
     ])
     REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8-sig")

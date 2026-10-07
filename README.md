@@ -2,30 +2,24 @@
 
 [![validate-pocs](https://github.com/ForOppdrag/oppdrag-public-pocs/actions/workflows/validate.yml/badge.svg)](https://github.com/ForOppdrag/oppdrag-public-pocs/actions/workflows/validate.yml)
 
-Mini proof-of-concepts publics qui accompagnent la page **Build in Public** d'Oppdrag.Tech.
+Maquettes publiques, volontairement simples, qui accompagnent la page **Build in Public** d'Oppdrag.Tech.
 
-Notre ligne : montrer l'exécution. Chaque POC part d'un besoin réaliste, utilise uniquement des données synthétiques, produit un résultat mesurable et documente aussi ses limites.
-
-## Pourquoi ce dépôt existe
-
-N'importe qui peut se dire expert IA, Data ou Cyber. Nous préférons publier des preuves : code lisible, rapports, hypothèses, métriques et takeaways honnêtes.
+Chaque POC est un script en Python standard (aucune dépendance), appliqué à des données synthétiques, qui génère son propre rapport. Ce sont des illustrations de méthode à petite échelle : aucun ne reproduit une chaîne de production, et ce README décrit exactement ce que fait chaque script, limites comprises.
 
 ## POCs publiés
 
-| ID | Domaine | POC | Résultat documenté | Lancer |
+| ID | Domaine | Ce que fait le script | Résultat du rapport | Lancer |
 | --- | --- | --- | --- | --- |
-| POC-001 | IA générative | RAG documentaire sur corpus juridique | Score RAGAS-like `0.867` | `python poc-001-rag-juridique/src/rag_demo.py` |
-| POC-002 | IA agentique | Agent de qualification des briefs mission | Complétude après clarification `94%` | `python poc-002-agent-qualification-briefs/src/brief_agent.py` |
-| POC-003 | Data engineering | Pipeline KPI temps réel mission | Latence P99 `790ms` | `python poc-003-pipeline-kpi-temps-reel/src/stream_kpis.py` |
-| POC-004 | Cybersécurité | Audit cloud AWS fictif | `23` findings, dont `5` critiques | `python poc-004-audit-cloud-aws-fictif/src/audit_config.py` |
+| POC-001 | Recherche documentaire | Classe 10 clauses contractuelles synthétiques par similarité de fréquence des termes avec chaque question ; aucun découpage, aucun modèle vectoriel, aucune génération de réponse. | Bonne clause en tête pour 13 questions sur 15 ; score composite maison `0.867` (0,6 × recherche + 0,4 × présence des termes attendus), qui n'est pas une évaluation RAGAS. | `python poc-001-rag-juridique/src/rag_demo.py` |
+| POC-002 | Qualification de briefs | Repère par mots-clés six rubriques dans 5 briefs synthétiques et propose jusqu'à trois questions par brief ; aucun agent, aucun modèle de langage. | Complétude initiale moyenne `63%`. La valeur « après clarification » (`94%`) est **simulée** : aucune réponse n'est obtenue (voir le README du POC). | `python poc-002-agent-qualification-briefs/src/brief_agent.py` |
+| POC-003 | Agrégation d'événements | Agrège 12 événements synthétiques par mission et calcule des centiles de latence ; aucune brique Kafka, Flink ou ClickHouse. | Centiles `P95 780ms` et `P99 790ms` calculés sur des latences **écrites dans le fichier de données**, et non mesurées. | `python poc-003-pipeline-kpi-temps-reel/src/stream_kpis.py` |
+| POC-004 | Cybersécurité | Applique sept règles de contrôle à la description JSON d'une architecture AWS fictive ; aucune connexion à AWS. | `23` constats, dont `5` critiques, avec une remédiation proposée pour chacun ; aucune correction appliquée. | `python poc-004-audit-cloud-aws-fictif/src/audit_config.py` |
 
-## Format
+## Contenu de chaque dossier
 
-Chaque POC suit le même cadre :
-
-- **J+1 - Cadrage** : périmètre, hypothèses, données de test, critères de succès.
-- **J+3 - Prototype** : première version fonctionnelle, métriques intermédiaires, blocages.
-- **J+5 - Démo documentée** : rapport, résultats, limites et prochaines décisions.
+- `src/` : le script ;
+- `data/` : les données synthétiques ;
+- `reports/` : le rapport généré par le script, reproductible à l'identique.
 
 ## Exécution locale
 
@@ -38,7 +32,7 @@ python poc-003-pipeline-kpi-temps-reel/src/stream_kpis.py
 python poc-004-audit-cloud-aws-fictif/src/audit_config.py
 ```
 
-Les rapports sont générés dans chaque dossier `reports/`.
+Les rapports sont régénérés dans chaque dossier `reports/`.
 
 ## Données et sécurité
 
